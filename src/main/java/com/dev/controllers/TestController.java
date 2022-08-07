@@ -1,6 +1,7 @@
 package com.dev.controllers;
 
 import com.dev.objects.Results;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,19 +17,19 @@ public class TestController {
         gameManagement = new GameManagement();
     }
 
+
+
     @RequestMapping("guess-and-result")
     public Results setGuess(String userGuess) {
         gameManagement.setUserGuess(userGuess);
-        System.out.println(gameManagement.getUserGuess());
         gameManagement.turn();
-        System.out.println(gameManagement.getResults().getResultString());
         return gameManagement.getResults();
     }
 
     @RequestMapping("set-word")
-    public String setWord (String userWord) {
+    public boolean setWord (String userWord) {
         gameManagement.setUserWord(userWord);
         System.out.println(gameManagement.getUserWord());
-        return gameManagement.getUserWord();
+        return true;
     }
 }
